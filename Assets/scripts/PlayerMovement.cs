@@ -24,8 +24,7 @@ public class PlayerMovement : MonoBehaviour
     }
     bool IsAttacking()
 {
-    if (animator.IsInTransition(0))
-        return true;
+    if (animator.IsInTransition(0)) return true;
         var state = animator.GetCurrentAnimatorStateInfo(0);
         return state.IsName("punch1") || state.IsName("punch2")
             || state.IsName("kick1") || state.IsName("kick2");
