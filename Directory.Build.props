@@ -1,0 +1,6 @@
+<Project>
+  <!-- Avoid NU1900 when ~/.local/share/NuGet is not writable (e.g. root-owned). -->
+  <PropertyGroup>
+    <NuGetAudit>false</NuGetAudit>
+  </PropertyGroup>
+</Project>
