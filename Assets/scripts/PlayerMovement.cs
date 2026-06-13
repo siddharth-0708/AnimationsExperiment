@@ -16,6 +16,9 @@ public class PlayerMovement : MonoBehaviour
 
     void Update()
     {
+        if (IsAttacking()){
+            return;
+        }
         Vector3 move = new Vector3(moveInput.x, 0f, moveInput.y);
         transform.Translate(move * moveSpeed * Time.deltaTime, Space.World);
     }
