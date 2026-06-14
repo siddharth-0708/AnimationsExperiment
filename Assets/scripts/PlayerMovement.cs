@@ -19,7 +19,7 @@ public class PlayerMovement : MonoBehaviour
         if (IsAttacking()){
             return;
         }
-        Vector3 move = new Vector3(moveInput.x, 0f, moveInput.y);
+        Vector3 move = new Vector3(moveInput.x, 0f, 0f);
         transform.Translate(move * moveSpeed * Time.deltaTime, Space.World);
     }
     bool IsAttacking()
@@ -36,7 +36,7 @@ public class PlayerMovement : MonoBehaviour
         moveInput = context.ReadValue<Vector2>();
 
         // true while any direction held, false when released
-        bool isMoving = moveInput.sqrMagnitude > 0.01f;
+        bool isMoving = Mathf.Abs(moveInput.x) > 0.01f;
         animator.SetBool("movement", isMoving);
     }
 
