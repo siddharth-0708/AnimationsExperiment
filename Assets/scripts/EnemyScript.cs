@@ -39,7 +39,7 @@ public class EnemyScript : MonoBehaviour
 
     void FixedUpdate()
     {
-        FollowTarget();
+        // FollowTarget();
     }
 
     void FollowTarget()
