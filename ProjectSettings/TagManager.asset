@@ -6,6 +6,11 @@ TagManager:
   tags:
   - randy
   - tripleh
+  - rightHandCollider
+  - leftHandCollider
+  - rightLegCollider
+  - leftLegCollider
+  - hitBox
   layers:
   - Default
   - TransparentFX
