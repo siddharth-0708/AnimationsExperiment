@@ -2,27 +2,36 @@ using UnityEngine;
 using UnityEngine.InputSystem;
 
 [RequireComponent(typeof(Animator))]
+[RequireComponent(typeof(Rigidbody))]
 public class PlayerMovement : MonoBehaviour
 {
     [SerializeField] private float moveSpeed = 3f;
 
     private Animator animator;
+    private Rigidbody rb;
     private Vector2 moveInput;
 
     void Awake()
     {
         animator = GetComponent<Animator>();
+        rb = GetComponent<Rigidbody>();
     }
 
     void Update()
     {
         UpdateFacing();
+    }
 
+    void FixedUpdate()
+    {
         if (IsAttacking())
+        {
+            rb.linearVelocity = Vector3.zero;
             return;
+        }
 
-        Vector3 move = new Vector3(moveInput.x, 0f, 0f);
-        transform.Translate(-move * moveSpeed * Time.deltaTime, Space.World);
+        float x = -moveInput.x * moveSpeed;
+        rb.linearVelocity = new Vector3(x, rb.linearVelocity.y, 0f);
     }
 
     void UpdateFacing()
@@ -32,7 +41,7 @@ public class PlayerMovement : MonoBehaviour
     }
     bool IsAttacking()
     {
-        if (animator.IsInTransition(0)) return true;
+        // if (animator.IsInTransition(0)) return true;
         var state = animator.GetCurrentAnimatorStateInfo(0);
         return state.IsName("punch1") || state.IsName("punch2")
             || state.IsName("kick1") || state.IsName("kick2");
@@ -41,10 +50,14 @@ public class PlayerMovement : MonoBehaviour
     // Arrow keys → movement bool
     public void PlayerActions(InputAction.CallbackContext context)
     {
+        if (!context.performed && !context.canceled)
+        {
+          return;  
+        };
         moveInput = context.ReadValue<Vector2>();
 
         // true while any direction held, false when released
-        bool isMoving = Mathf.Abs(moveInput.x) > 0.01f;
+        bool isMoving = moveInput.x != 0f;
         animator.SetBool("movement", isMoving);
     }
 
