@@ -88,4 +88,16 @@ public class PlayerMovement : MonoBehaviour
         if (IsAttacking()) return;
         animator.SetTrigger("kick2");
     }
+    public void Pickup(InputAction.CallbackContext context)
+    {
+        if (!context.performed) return;
+        if (IsAttacking()) return;
+        animator.SetTrigger("pickup");
+    }
+    public void Attack(InputAction.CallbackContext context)
+    {
+        if (!context.performed) return;
+        if (IsAttacking()) return;
+        animator.SetTrigger("attack");
+    }
 }
