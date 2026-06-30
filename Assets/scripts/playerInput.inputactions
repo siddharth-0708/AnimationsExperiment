@@ -68,6 +68,15 @@
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": false
+                },
+                {
+                    "name": "dropWeapon",
+                    "type": "Button",
+                    "id": "e630b9ad-d047-4218-9f2b-1c7f703a603d",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
                 }
             ],
             "bindings": [
@@ -189,6 +198,17 @@
                     "processors": "",
                     "groups": "",
                     "action": "attack",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "eed26c22-b876-4e51-a176-b8679de102ce",
+                    "path": "<Keyboard>/e",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "dropWeapon",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }
